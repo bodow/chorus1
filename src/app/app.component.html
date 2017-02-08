@@ -34,13 +34,11 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<section><h1>{{title}}</h1></section>
-<hr>
-<ul>
-  <li *ngFor="let chorus of choruses | async">{{chorus.$key}}</li>
-</ul>
-<ul>
-  <li *ngFor="let ch of chors">{{ch.name}} -- {{ch.comments}}</li>
-</ul>
 
-<button type="button" class="btn btn-info" (click)="postChorusSample()">Add a Sample Chorus</button>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <ch-chorus></ch-chorus>
+    </div>
+  </div>
+</div>
