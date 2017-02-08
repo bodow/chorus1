@@ -9,11 +9,16 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 export class AppComponent implements OnInit {
   title = 'ch works!';
 
-  items : FirebaseListObservable<any[]>;
+  choruses : FirebaseListObservable<any[]>;
 
   constructor(private af: AngularFire) {}
 
   ngOnInit() {
-    this.items = this.af.database.list('/SUN/chorus');
+    this.choruses = this.af.database.list('/SUN/chorus');
+    console.log(this.choruses);
+  }
+
+  postChorusSample() {
+    this.choruses.push({name: "Χορωδία 7ου Δημοτικού Βύρωνα", defValue: 10, comments:"Πρόβες κάθε Σάββατο 10:30πμ"});
   }
 }
