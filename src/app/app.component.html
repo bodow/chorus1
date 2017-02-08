@@ -39,5 +39,8 @@
 <ul>
   <li *ngFor="let chorus of choruses | async">{{chorus.$key}}</li>
 </ul>
+<ul>
+  <li *ngFor="let ch of chors">{{ch.name}} -- {{ch.comments}}</li>
+</ul>
 
 <button type="button" class="btn btn-info" (click)="postChorusSample()">Add a Sample Chorus</button>
