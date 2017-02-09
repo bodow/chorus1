@@ -12,26 +12,26 @@ const PATH_CHORUS = '/SUN/chorus';
 @Injectable()
 export class FirebaseService {
 
-  choruses : FirebaseListObservable<any[]>;
+  public choruses : FirebaseListObservable<any[]>;
   allChorus: Chorus[] = [];
 
-  constructor(private af: AngularFire) {}
-
-  getAllChorus(): Chorus[] {
+  constructor(private af: AngularFire) {
     this.choruses = this.af.database.list(PATH_CHORUS);
-    this.choruses.subscribe(x => {
-        this.allChorus = x.map(function(a) {
-          return new Chorus(a.$key, a.name, a.comments, a.defValue);
-        })
-      });
-      return this.allChorus;
-  }  
+  }
+
+  // getAllChorus(): Chorus[] {
+  //   this.choruses.subscribe(x => {
+  //       this.allChorus = x.map(function(a) {
+  //         return new Chorus(a.$key, a.name, a.comments, a.defValue);
+  //       })
+  //     });
+  //     return this.allChorus;
+  // }  
 
   addChorus(name: string, comments?: string, defValue?: number) {
-    let o = new Object();
-    if (name) o['name'] = name;
-    if (comments) o['comments'] = comments;
-    if (defValue) o['defValue'] = defValue;
+    let o = new Object({name: name});
+    if (typeof comments !== 'undefined') o['comments'] = comments;
+    if (typeof defValue !== 'undefined') o['defValue'] = defValue;
     this.choruses.push(o);
   }
 

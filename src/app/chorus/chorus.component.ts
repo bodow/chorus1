@@ -22,17 +22,15 @@ export class ChorusComponent implements OnInit {
   constructor(private firesvc: FirebaseService) {}
 
   ngOnInit() {
-    this.allChorus = this.firesvc.getAllChorus();
-    // this.choruses = this.af.database.list(URL_PATH);
-    // this.choruses.subscribe(x => {
-    //     this.allChorus = x.map(function(a) {
-    //       return new Chorus(a.$key, a.name, a.comments, a.defValue);
-    //     })
-    //   });
+    this.firesvc.choruses.subscribe(x => {
+        this.allChorus = x.map(function(a) {
+          return new Chorus(a.$key, a.name, a.comments, a.defValue);
+        })
+      });
   }
 
   postChorusSample() {
-    this.firesvc.addChorus('Αλιμος', 'Μπλα μπλα', 12);
+    this.firesvc.addChorus('Σκέτη χορωδία', "");
     // this.choruses.push({name: "Χορωδία 7ου Δημοτικού Βύρωνα", defValue: 10, comments:"Πρόβες κάθε Σάββατο 10:30πμ"});
   }
 }
